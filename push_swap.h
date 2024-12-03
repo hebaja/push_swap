@@ -26,6 +26,10 @@ void	pb(t_stack **stk_a, t_stack **stk_b);
 void	ra(t_stack **head);
 void	rb(t_stack **head);
 void	rr(t_stack **stk_a, t_stack **stk_b);
+void	rra(t_stack **head);
+void	rrb(t_stack **head);
 void	rot_stack(t_stack **head);
+void	rrot_stack(t_stack **head);
+void	rrr(t_stack **stk_a, t_stack **stk_b);
 
 #endif
