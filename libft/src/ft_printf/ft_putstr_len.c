@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/04 00:42:05 by hebatist         ###   ########.fr       */
+/*   Created: 2024/10/22 21:04:53 by hebatist          #+#    #+#             */
+/*   Updated: 2024/10/24 20:59:51 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft/include/libft.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putstr_len(char *str)
 {
-	int	i;
 	int	len;
-	int	*arr;
 
-	i = 0;
-	len = argc -1;
-	arr = (int *)malloc(sizeof(int) * len);
-	while(++i < argc)
+	len = 0;
+	while (*str)
 	{
-		ft_printf("%d %s\n", argc, argv[i]);
-		arr[i - 1] = ft_atoi(argv[i]);
+		len += ft_putchar_len(*str);
+		str++;
 	}
-	i = -1;
-	while (++i < len)
-		ft_printf("%d\n", arr[i]);
-	free(arr);
-	return (0);
+	return (len);
 }

@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/04 00:42:05 by hebatist         ###   ########.fr       */
+/*   Created: 2024/10/22 19:35:06 by hebatist          #+#    #+#             */
+/*   Updated: 2024/10/28 17:25:05 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft/include/libft.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_printf(const char *str, ...)
 {
-	int	i;
-	int	len;
-	int	*arr;
+	va_list	args;
+	int		len;
 
-	i = 0;
-	len = argc -1;
-	arr = (int *)malloc(sizeof(int) * len);
-	while(++i < argc)
+	len = 0;
+	if (str == NULL)
+		return (-1);
+	va_start(args, str);
+	while (*str)
 	{
-		ft_printf("%d %s\n", argc, argv[i]);
-		arr[i - 1] = ft_atoi(argv[i]);
+		if (*(str) == '%')
+		{
+			len += print_type(str, args);
+			str += 2;
+		}
+		else if (*str)
+		{
+			len += ft_putchar_len(*str);
+			str += 1;
+		}
 	}
-	i = -1;
-	while (++i < len)
-		ft_printf("%d\n", arr[i]);
-	free(arr);
-	return (0);
+	va_end(args);
+	return (len);
 }
