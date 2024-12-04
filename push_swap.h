@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/03 20:28:38 by hebatist          #+#    #+#             */
+/*   Updated: 2024/12/04 00:38:40 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -6,11 +18,11 @@
 
 typedef struct s_stack
 {
-	int			value;
+	int				value;
 	struct s_stack	*next;
 }		t_stack;
 
-void	push_swap(int *stack);
+//void	push_swap(int *stack);
 void	top_swap(t_stack **head);
 size_t	stack_size(t_stack *head);
 t_stack	*stack_new(int value);

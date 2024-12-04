@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rrot_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/03 20:18:28 by hebatist          #+#    #+#             */
+/*   Updated: 2024/12/03 20:22:08 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rrot_stack(t_stack **head)
 {
 	t_stack	*stk_curr;
-	t_stack *stk_prev;	
-	
+	t_stack	*stk_prev;	
+
 	if (head == NULL || *head == NULL || (*head)->next == NULL)
 		return ;
 	stk_curr = *head;
