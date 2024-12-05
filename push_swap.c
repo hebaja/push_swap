@@ -13,23 +13,59 @@
 #include "push_swap.h"
 #include "libft/include/libft.h"
 
+void	print_node(int value)
+{
+	ft_printf("%d\n", value);
+}
+
+int	input_not_valid(char *str)
+{
+	while(*str)
+	{
+		if (!ft_isdigit(*str) && *str != '+' && *str != '-')
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+int	build_stack(t_stack **head, char *str)
+{
+	int	nbr;
+	
+	nbr = ft_atoi(str);
+	if (input_not_valid(str))
+		return (0);
+	if (*head == NULL)
+	{
+		*head = stack_new(nbr);
+	}
+	else
+	{
+		stack_addback(head, stack_new(nbr));
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	int	i;
 	int	len;
-	int	*arr;
+	t_stack	*head;
 
 	i = 0;
 	len = argc -1;
-	arr = (int *)malloc(sizeof(int) * len);
+	head = NULL;
 	while(++i < argc)
 	{
-		ft_printf("%d %s\n", argc, argv[i]);
-		arr[i - 1] = ft_atoi(argv[i]);
+		if (!build_stack(&head, argv[i]))
+		{
+			stack_clear(&head);
+			ft_printf("Error\n");
+			return (0);
+		}	
 	}
-	i = -1;
-	while (++i < len)
-		ft_printf("%d\n", arr[i]);
-	free(arr);
+	stack_iter(head, print_node);
+	stack_clear(&head);
 	return (0);
 }

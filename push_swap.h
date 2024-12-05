@@ -30,6 +30,8 @@ t_stack	*stack_last(t_stack *head);
 void	stack_addback(t_stack **head, t_stack *new_stk);
 void	stack_addfront(t_stack **head, t_stack *new_stk);
 void	stack_del_head(t_stack **head);
+void	stack_clear(t_stack **head);
+void	stack_iter(t_stack *head, void (*f)(int));
 void	sa(t_stack **head);
 void	sb(t_stack **head);
 void	ss(t_stack **stk_a, t_stack **stk_b);
