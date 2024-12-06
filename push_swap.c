@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/04 00:42:05 by hebatist         ###   ########.fr       */
+/*   Updated: 2024/12/06 00:14:58 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,56 @@ int	input_not_valid(char *str)
 
 int	build_stack(t_stack **head, char *str)
 {
-	int	nbr;
-	
-	nbr = ft_atoi(str);
-	if (input_not_valid(str))
-		return (0);
-	if (*head == NULL)
+	while (*str)
 	{
-		*head = stack_new(nbr);
-	}
-	else
-	{
-		stack_addback(head, stack_new(nbr));
+		while (*str == ' ')
+			str++;
+		if ((*str != ' ' && *str != '+' && *str != '-' && !ft_isdigit(*str))
+			|| (*str == '+' && !ft_isdigit(*(str + 1)))
+			|| (*str == '-' && !ft_isdigit(*(str + 1))))
+			return (0);
+		if (*str == '+' || *str == '-' || ft_isdigit(*str))
+		{
+			if (*head == NULL)
+				*head = stack_new(atoi(str));
+			else
+				stack_addback(head, stack_new(atoi(str)));
+		}
+		str++;
+		while (ft_isdigit(*str))
+			str++;
+		if (*str == '+' || *str == '-')
+			return (0);
 	}
 	return (1);
+}
+
+int	check_double_nbr(t_stack *head)
+{
+	size_t	len;
+	int	value;
+	t_stack	*n_stk;
+	
+	len = stack_size(head);
+	while (len--)
+	{
+		value = head->value;
+		n_stk = head->next;
+		while (n_stk)
+		{
+			if (value == n_stk->value)
+				return (0);
+			n_stk = n_stk->next;
+		}
+		head = head->next;
+	}
+	return (1);
+}
+
+int	print_error()
+{
+	ft_printf("Error\n");
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -61,10 +97,12 @@ int	main(int argc, char **argv)
 		if (!build_stack(&head, argv[i]))
 		{
 			stack_clear(&head);
-			ft_printf("Error\n");
-			return (0);
+			return (print_error());
 		}	
 	}
+	i = -1;
+	if(!check_double_nbr(head))
+		return (print_error());
 	stack_iter(head, print_node);
 	stack_clear(&head);
 	return (0);
