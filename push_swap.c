@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/20 23:39:19 by hebatist         ###   ########.fr       */
+/*   Updated: 2024/12/21 19:06:16 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,6 @@ int	print_error()
 	ft_printf("Error\n");
 	return (0);
 }
-/*
-int	is_movable(int nbr)
-{
-	if ((nbr >> 1) == 0)
-	{
-		return (1);
-	}
-}
-*/
 
 int	get_bit_size(int nbr)
 {
@@ -120,11 +111,9 @@ int	get_biggest_nbr(t_stack **head)
 	tmp = 0;
 	while (size > 0)
 	{
-		//ft_printf("%d -> %d\n", (*head)->value, get_bit_size((*head)->value));
 		tmp = get_bit_size((*head)->value);
 		if (tmp  > nbr)
 		       nbr = tmp;	
-		//ra(head);
 		rot_stack(head);
 		size--;	
 	}
@@ -142,6 +131,87 @@ void	print_moves(t_stack *a, t_stack *b, int move)
 	ft_printf("\n");
 }
 
+void	sort_three(t_stack **head)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = (*head)->value;
+	b = (*head)->next->value;
+	c = (*head)->next->next->value;
+	if (a < c && a > b)
+		sa(head);
+	else if (b > a && b > c && a > c)
+		rra(head);
+	else if (a > b && c > b)
+		ra(head);
+	else if (a > b && b > c)
+	{
+		sa(head);
+		rra(head);
+	}
+	else if (b > c && c > a)
+	{
+		ra(head);
+		sa(head);
+		rra(head);
+	}
+}
+
+void	reverse_sort_three(t_stack **head)
+{
+	int	a;
+	int	b;
+	int	c;
+	
+	if (reverse_check_sort(*head))
+		return ;
+	a = (*head)->value;
+	b = (*head)->next->value;
+	c = (*head)->next->next->value;
+	if (!(a < c && a > b))
+		sa(head);
+	else if (!(b > a && b > c && a > c))
+		rra(head);
+	else if (!(a > b && c > b))
+		ra(head);
+	else if (!(a > b && b > c))
+	{
+		sa(head);
+		rra(head);
+	}
+	else if (!(b > c && c > a))
+	{
+		ra(head);
+		sa(head);
+		rra(head);
+	}
+}
+
+void	sort_four(t_stack **head, t_stack **b)
+{
+	size_t	size;
+
+	size = stack_size(*head);
+	if ((*head)->value > (*head)->next->value)
+		sa(head);
+	if ((*head)->value > stack_last(*head)->value)
+		rra(head);
+	if (check_sort(*head))
+		return ;
+	while (stack_size(*head) != 1)
+	{
+		if ((*head)->value < (*head)->next->value)
+			pb(head, b);
+		else
+			ra(head);
+	}
+	reverse_sort_three(b);
+	while (stack_size(*b))
+		pa(b, head);
+}
+
 int	main(int argc, char **argv)
 {
 	int	i;
@@ -151,6 +221,7 @@ int	main(int argc, char **argv)
 	t_stack *b;
 	int	bit_size;
 	int	bit;
+	int	size;
 
 	i = 0;
 	len = argc -1;
@@ -171,41 +242,53 @@ int	main(int argc, char **argv)
 	
 	bit_size = get_biggest_nbr(&head);
 	count = 0;
+	size = stack_size(head);
 
-	while (bit_size--)
+	if (size == 2 && !check_sort(head))
+		sa(&head);
+	if (size == 3 && !check_sort(head))
+		sort_three(&head);
+	if (size == 4 && !check_sort(head))
+		sort_four(&head, &b);
+	else
 	{
-		if (check_sort(head))
-			break ;
-
-		i = 0;
-		len = (int)stack_size(head);
-		while (i < len)
+		while (bit_size--)
 		{
-			bit = head->value >> count & 1;
-			if (!bit)
-				pb(&head, &b);
-			else
-				ra(&head);
-			i++;
+			if (check_sort(head))
+				break ;
+	
+			i = 0;
+			len = (int)stack_size(head);
+			while (i < len)
+			{
+				if (check_sort(head))
+					break ;
+				bit = head->value >> count & 1;
+				if (!bit)
+					pb(&head, &b);
+				else
+					ra(&head);
+				i++;
+			}
+	
+			//print_moves(head, b, count + 1);
+			
+			i = 0;
+			len = (int)stack_size(b);
+			while (i < len)
+			{
+				pa(&b, &head);
+				i++;
+			}
+			count++;
+	
 		}
-
-		//print_moves(head, b, count + 1);
-		
-		i = 0;
-		len = (int)stack_size(b);
-		while (i < len)
-		{
-			pa(&b, &head);
-			i++;
-		}
-		count++;
-
 	}
 
 	if (!check_sort(head))
 		ft_printf("not sorted\n");
 
-	// stack_iter(head, print_node);
+	stack_iter(head, print_node);
 	// ft_printf("\n");
 	// ft_printf("%d\n", check_sort(head));
 	/*
