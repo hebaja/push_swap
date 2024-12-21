@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:28:38 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/04 00:38:40 by hebatist         ###   ########.fr       */
+/*   Updated: 2024/12/20 23:21:45 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void	rrb(t_stack **head);
 void	rot_stack(t_stack **head);
 void	rrot_stack(t_stack **head);
 void	rrr(t_stack **stk_a, t_stack **stk_b);
+int	check_sort(t_stack *head);
 
 #endif

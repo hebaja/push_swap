@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/15 18:20:07 by hebatist         ###   ########.fr       */
+/*   Updated: 2024/12/20 23:39:19 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	build_stack(t_stack **head, char *str)
 		if (*str == '+' || *str == '-' || ft_isdigit(*str))
 		{
 			if (*head == NULL)
-				*head = stack_new(atoi(str));
+				*head = stack_new(ft_atoi(str));
 			else
-				stack_addback(head, stack_new(atoi(str)));
+				stack_addback(head, stack_new(ft_atoi(str)));
 		}
 		str++;
 		while (ft_isdigit(*str))
@@ -173,6 +173,8 @@ int	main(int argc, char **argv)
 
 	while (bit_size--)
 	{
+		if (check_sort(head))
+			break ;
 		i = 0;
 		len = (int)stack_size(head);
 		while (i < len)
@@ -185,7 +187,7 @@ int	main(int argc, char **argv)
 			i++;
 		}
 
-		print_moves(head, b, count + 1);
+		//print_moves(head, b, count + 1);
 		
 		i = 0;
 		len = (int)stack_size(b);
@@ -200,6 +202,7 @@ int	main(int argc, char **argv)
 
 	stack_iter(head, print_node);
 	ft_printf("\n");
+	ft_printf("%d\n", check_sort(head));
 	/*
 	stack_iter(b, print_node);
 	ft_printf("\n");
