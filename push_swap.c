@@ -124,7 +124,8 @@ int	get_biggest_nbr(t_stack **head)
 		tmp = get_bit_size((*head)->value);
 		if (tmp  > nbr)
 		       nbr = tmp;	
-		ra(head);
+		//ra(head);
+		rot_stack(head);
 		size--;	
 	}
 	return (nbr);
@@ -175,6 +176,7 @@ int	main(int argc, char **argv)
 	{
 		if (check_sort(head))
 			break ;
+
 		i = 0;
 		len = (int)stack_size(head);
 		while (i < len)
@@ -200,9 +202,12 @@ int	main(int argc, char **argv)
 
 	}
 
-	stack_iter(head, print_node);
-	ft_printf("\n");
-	ft_printf("%d\n", check_sort(head));
+	if (!check_sort(head))
+		ft_printf("not sorted\n");
+
+	// stack_iter(head, print_node);
+	// ft_printf("\n");
+	// ft_printf("%d\n", check_sort(head));
 	/*
 	stack_iter(b, print_node);
 	ft_printf("\n");
