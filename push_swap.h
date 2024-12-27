@@ -47,5 +47,16 @@ void	rrot_stack(t_stack **head);
 void	rrr(t_stack **stk_a, t_stack **stk_b);
 int	check_sort(t_stack *head);
 int	reverse_check_sort(t_stack *head);
+void	radix_sort(t_stack **head, t_stack **b);
+int	build_stack(t_stack **head, char *str);
+void	sort_three(t_stack **head);
+void	sort_five(t_stack **head, t_stack **b);
+void	reverse_sort_three(t_stack **head);
+int	reverse_sort(t_stack **head);
+void	sort_four(t_stack **head);
+int	check_double_nbr(t_stack *head);
+int	check_nbr_limits(char *str);
+void	print_moves(t_stack *a, t_stack *b, int move);
+void	print_node(int value);
 
 #endif
