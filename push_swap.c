@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	else
 		radix_sort(&head, &b);
 
-	// stack_iter(head, print_node);
+	stack_iter(head, print_node);
 
 	stack_clear(&head);
 	return (0);
