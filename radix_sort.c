@@ -38,6 +38,12 @@ int	get_biggest_nbr(t_stack **head)
 	return (nbr);
 }
 
+void	finish_stack(t_stack **head, t_stack **b)
+{
+	while (stack_size(*b))
+		pa(b, head);
+}
+
 void	radix_sort(t_stack **head, t_stack **b)
 {
 	int	i;
@@ -52,9 +58,15 @@ void	radix_sort(t_stack **head, t_stack **b)
 	bit_size = get_biggest_nbr(head);
 	while (bit_size-- && !check_sort(*head))
 	{
+		if (check_sort(*head) && reverse_check_sort(*b))
+		{
+			finish_stack(head, b);
+			break ;
+		}	
 		i = 0;
 		len = (int)stack_size(*head);
 		while (i++ < len)
+		{
 			if (!((*head)->value >> count & 1))
 			{
 				pb(head, b);
@@ -65,7 +77,12 @@ void	radix_sort(t_stack **head, t_stack **b)
 				ra(head);
 				op++;
 			}
-
+			if (check_sort(*head) && reverse_check_sort(*b))
+			{
+				finish_stack(head, b);
+				break ;
+			}	
+		}
 		print_moves(*head, *b, count);
 
 
