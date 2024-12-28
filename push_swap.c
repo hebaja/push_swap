@@ -13,6 +13,7 @@
 #include "push_swap.h"
 #include "libft/include/libft.h"
 #include <stdio.h>
+#include <unistd.h>
 
 int	input_not_valid(char *str)
 {
@@ -37,19 +38,78 @@ int	case_stack_error(t_stack **head)
 	return (print_error());
 }
 
-int	main(int argc, char **argv)
+void	sort_arr(int *arr, int size)
 {
 	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while(i < size)
+	{
+		j = 0;
+		while (j < size - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	build_array(t_stack *head)
+{
+	int	*arr;
+	size_t	size;
+	t_stack	*current;
+	size_t	i;
+
+	size = stack_size(head);
+	arr = (int *)malloc(sizeof(int) * size);
+	current = head;
+	i = 0;
+	while (current)
+	{
+		arr[i++] = current->value;
+		current = current->next;
+	}
+	sort_arr(arr, size);
+	current = head;
+	while (current)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (current->value == arr[i])
+			{
+				current->index = i;
+				break;
+			}
+			i++;
+		}
+		current = current->next;
+	}
+	free(arr);
+}
+
+int	main(int argc, char **argv)
+{
+	size_t	i;
 	t_stack	*head;
 	t_stack *b;
 
 	i = 0;
 	head = NULL;
 	b = NULL;
-	while(++i < argc)
+	while(++i < (size_t)argc)
 		if (!check_nbr_limits(argv[i]) || !build_stack(&head, argv[i]))
 			return (case_stack_error(&head));
-	i = -1;
+	build_array(head);
 	if(!check_double_nbr(head))
 		return (print_error());
 	if (stack_size(head) == 2 && !check_sort(head))
