@@ -62,24 +62,16 @@ void	sort_arr(int *arr, int size)
 	}
 }
 
-void	build_array(t_stack *head)
+void	put_index(t_stack *head, int *arr)
 {
-	int	*arr;
+	size_t	i;
 	size_t	size;
 	t_stack	*current;
-	size_t	i;
 
-	size = stack_size(head);
-	arr = (int *)malloc(sizeof(int) * size);
-	current = head;
 	i = 0;
-	while (current)
-	{
-		arr[i++] = current->value;
-		current = current->next;
-	}
-	sort_arr(arr, size);
+	size = stack_size(head);
 	current = head;
+	sort_arr(arr, size);
 	while (current)
 	{
 		i = 0;
@@ -97,19 +89,38 @@ void	build_array(t_stack *head)
 	free(arr);
 }
 
+void	attr_index(t_stack *head)
+{
+	int	*arr;
+	size_t	size;
+	t_stack	*current;
+	int	i;
+
+	size = stack_size(head);
+	arr = (int *)malloc(sizeof(int) * size);
+	current = head;
+	i = 0;
+	while (current)
+	{
+		arr[i++] = current->value;
+		current = current->next;
+	}
+	put_index(head, arr);
+}
+
 int	main(int argc, char **argv)
 {
-	size_t	i;
+	int	i;
 	t_stack	*head;
 	t_stack *b;
 
 	i = 0;
 	head = NULL;
 	b = NULL;
-	while(++i < (size_t)argc)
+	while(++i < argc)
 		if (!check_nbr_limits(argv[i]) || !build_stack(&head, argv[i]))
 			return (case_stack_error(&head));
-	build_array(head);
+	attr_index(head);
 	if(!check_double_nbr(head))
 		return (print_error());
 	if (stack_size(head) == 2 && !check_sort(head))

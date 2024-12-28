@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*stack_new(int value)
+t_stack	*stack_new(int value, size_t index)
 {
 	t_stack			*stk;
 
@@ -20,7 +20,7 @@ t_stack	*stack_new(int value)
 	if (stk == NULL)
 		return (NULL);
 	stk->value = value;
-	stk->index = 0;
+	stk->index = index;
 	stk->next = NULL;
 	return (stk);
 }

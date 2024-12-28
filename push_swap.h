@@ -26,7 +26,7 @@ typedef struct s_stack
 //void	push_swap(int *stack);
 void	top_swap(t_stack **head);
 size_t	stack_size(t_stack *head);
-t_stack	*stack_new(int value);
+t_stack	*stack_new(int value, size_t index);
 t_stack	*stack_last(t_stack *head);
 void	stack_addback(t_stack **head, t_stack *new_stk);
 void	stack_addfront(t_stack **head, t_stack *new_stk);
@@ -59,5 +59,6 @@ int	check_double_nbr(t_stack *head);
 int	check_nbr_limits(char *str);
 void	print_moves(t_stack *a, t_stack *b, int move);
 void	print_node(int value);
+void	attr_index(t_stack *head);
 
 #endif

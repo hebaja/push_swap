@@ -14,9 +14,9 @@ int	build_stack(t_stack **head, char *str)
 		if (*str == '+' || *str == '-' || ft_isdigit(*str))
 		{
 			if (*head == NULL)
-				*head = stack_new(ft_atoi(str));
+				*head = stack_new(ft_atoi(str), 0);
 			else
-				stack_addback(head, stack_new(ft_atoi(str)));
+				stack_addback(head, stack_new(ft_atoi(str), 0));
 		}
 		str++;
 		while (ft_isdigit(*str))
