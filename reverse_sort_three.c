@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_sort_three.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/28 16:32:33 by hebatist          #+#    #+#             */
+/*   Updated: 2024/12/28 17:03:38 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	two_ops(t_stack **head)
@@ -18,7 +30,7 @@ void	reverse_sort_three(t_stack **head)
 	int	a;
 	int	b;
 	int	c;
-	
+
 	if (reverse_check_sort(*head))
 		return ;
 	a = (*head)->value;

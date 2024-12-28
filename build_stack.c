@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   build_stack.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/28 16:29:16 by hebatist          #+#    #+#             */
+/*   Updated: 2024/12/28 17:17:07 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "libft/include/libft.h"
 
@@ -5,9 +17,10 @@ int	build_stack(t_stack **head, char *str)
 {
 	while (*str)
 	{
-		while (*str == ' ')
+		while (*str == ' ' || *str == '\t')
 			str++;
-		if ((*str != ' ' && *str != '+' && *str != '-' && !ft_isdigit(*str))
+		if ((*str != ' ' && *str != '\t'
+				&& *str != '+' && *str != '-' && !ft_isdigit(*str))
 			|| (*str == '+' && !ft_isdigit(*(str + 1)))
 			|| (*str == '-' && !ft_isdigit(*(str + 1))))
 			return (0);
@@ -21,8 +34,8 @@ int	build_stack(t_stack **head, char *str)
 		str++;
 		while (ft_isdigit(*str))
 			str++;
-		if (*str == '+' || *str == '-')
-			return (0);
+		while (*str == ' ' || *str == '\t')
+			str++;
 	}
 	return (1);
 }

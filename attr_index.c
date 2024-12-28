@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   attr_index.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/28 16:28:45 by hebatist          #+#    #+#             */
+/*   Updated: 2024/12/28 16:53:27 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_arr(int *arr, int size)
@@ -7,7 +19,7 @@ void	sort_arr(int *arr, int size)
 	int	tmp;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		j = 0;
 		while (j < size - 1)
@@ -42,7 +54,7 @@ void	put_index(t_stack *head, int *arr)
 			if (current->value == arr[i])
 			{
 				current->index = i;
-				break;
+				break ;
 			}
 			i++;
 		}
@@ -53,10 +65,10 @@ void	put_index(t_stack *head, int *arr)
 
 void	attr_index(t_stack *head)
 {
-	int	*arr;
-	size_t	size;
 	t_stack	*current;
-	int	i;
+	size_t	size;
+	int		*arr;
+	int		i;
 
 	size = stack_size(head);
 	arr = (int *)malloc(sizeof(int) * size);

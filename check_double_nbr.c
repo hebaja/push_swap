@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_double_nbr.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/28 16:29:55 by hebatist          #+#    #+#             */
+/*   Updated: 2024/12/28 16:58:23 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	check_double_nbr(t_stack *head)
 {
-	size_t	len;
-	int	value;
 	t_stack	*n_stk;
-	
+	size_t	len;
+	int		value;
+
 	len = stack_size(head);
 	while (len--)
 	{
