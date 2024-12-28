@@ -50,3 +50,22 @@ void	put_index(t_stack *head, int *arr)
 	}
 	free(arr);
 }
+
+void	attr_index(t_stack *head)
+{
+	int	*arr;
+	size_t	size;
+	t_stack	*current;
+	int	i;
+
+	size = stack_size(head);
+	arr = (int *)malloc(sizeof(int) * size);
+	current = head;
+	i = 0;
+	while (current)
+	{
+		arr[i++] = current->value;
+		current = current->next;
+	}
+	put_index(head, arr);
+}
