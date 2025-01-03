@@ -11,7 +11,7 @@ LIBFT_DIR=libft
 
 all: $(NAME)
 	make -C $(LIBFT_DIR)
-	cc $(CC_FLAGS) push_swap.c push_swap.a $(LIBFT_DIR)/libft.a -o push_swap -g
+	cc $(CC_FLAGS) push_swap.c push_swap.a $(LIBFT_DIR)/libft.a -o push_swap
 
 $(NAME): $(OBJS)
 	ar rcs $@ $^
