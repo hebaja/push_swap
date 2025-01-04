@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:30:12 by hebatist          #+#    #+#             */
-/*   Updated: 2024/12/28 17:12:00 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:23:14 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,15 @@ int	check_nbr_limits(char *str)
 {
 	long	nbr;
 
-	nbr = ft_atoi_long(str);
-	if (nbr >= -2147483648 && nbr <= 2147483647)
-		return (1);
-	return (0);
+	while (*str)
+	{
+		while (*str && (*str == ' ' || *str == '\t'))
+			str++;
+		nbr = ft_atoi_long(str);
+		if (nbr < -2147483648 || nbr > 2147483647)
+			return (0);
+		while (*str && (*str != ' ' && *str != '\t'))
+			str++;
+	}
+	return (1);
 }
