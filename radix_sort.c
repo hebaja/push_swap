@@ -58,6 +58,8 @@ void	radix_sort(t_stack **stk_a, t_stack **stk_b)
 				return ;
 			first_step(stk_a, stk_b, count);
 		}
+		if (already_sorted(stk_a, stk_b))
+			return ;
 		i = 0;
 		len = (int)stack_size(*stk_b);
 		while (i++ < len)
