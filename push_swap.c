@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2025/01/03 23:24:59 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/01/06 15:10:47 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	input_not_valid(char *str)
 
 int	print_error(void)
 {
-	ft_printf("Error\n");
+	ft_putendl_fd("Error\n", 2);
 	return (0);
 }
 
