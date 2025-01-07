@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:22:47 by hebatist          #+#    #+#             */
-/*   Updated: 2025/01/06 15:10:47 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:04:56 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	input_not_valid(char *str)
 
 int	print_error(void)
 {
-	ft_putendl_fd("Error\n", 2);
+	ft_putendl_fd("Error", 2);
 	return (0);
 }
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 			return (case_stack_error(&stk_a));
 	attr_index(stk_a);
 	if (!check_double_nbr(stk_a))
-		return (print_error());
+		return (case_stack_error(&stk_a));
 	if (stack_size(stk_a) == 2 && !check_sort(stk_a))
 		sa(&stk_a);
 	else if (stack_size(stk_a) == 3 && !check_sort(stk_a))
